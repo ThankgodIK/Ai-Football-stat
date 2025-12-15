@@ -3,7 +3,6 @@ import Image from "next/image";
 import pittsburgh from "./assets/pittsburgh.png";
 
 import { useChat } from "ai/react";
-import { Message } from "ai";
 import Bubble from "./components/Bubble";
 import LoadingBubble from "./components/LoadingBubble";
 import PromptSuggestionsRow from "./components/PromptSuggestionsRow";
@@ -22,12 +21,7 @@ const Home = () => {
   const noMessages = !messages || messages.length === 0;
 
   const handlePrompt = (promptText) => {
-    const msg: Message = {
-      id: crypto.randomUUID(),
-      role: "user",
-      content: promptText,
-    };
-    append(msg);
+    append({ role: "user", content: promptText });
   };
   return (
     <main>
