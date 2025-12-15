@@ -95,5 +95,5 @@ const scrapePage = async (fileUrl: string) => {
   return (await loader.scrape())?.replace(/<[^>]*>?/gm, " ");
 };
 
-// createCollection().then(() => loadSampleData());
-loadSampleData();
+createCollection().then(() => loadSampleData());
+// loadSampleData();
