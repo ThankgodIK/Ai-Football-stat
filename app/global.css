@@ -1,119 +1,82 @@
+/* Global reset */
 * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  box-sizing: border-box;
-  background-color: #f3f4f6;
-  color: #1f2937;
 }
 
+/* Main chat container */
 main {
-  height: 80vh;
-  width: 80vw;
-  border-radius: 15px;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  width: 95%;
+  max-width: 700px;
+  height: 90vh;
   background-color: #ffffff;
+  border-radius: 15px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  text-align: center;
-  padding: 20px;
-  color: #171718;
-}
-
-section {
-  width: 100%;
-}
-
-section.populated {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: scroll;
-}
-
-.starter-text {
-  padding: 0 80px;
-}
-form {
-  height: 50px;
-  width: 100%;
-  display: flex;
-  border-top: #828282 solid 2px;
-  padding-top: 20px;
-  border-radius: 0 0 10px 10px;
   overflow: hidden;
 }
 
-input.question-box {
-  width: 85%;
-  padding: 10px;
-  font-size: 15px;
-  color: #171718;
-  border: none;
+/* Logo/Header */
+main > img {
+  margin: 20px auto;
 }
 
-input[type="submit"] {
-  width: 15%;
-  border: none;
-  background-color: #2563eb;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
-  padding: 10px;
+/* Messages section */
+section {
+  flex: 1;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: auto;
+  gap: 8px;
 }
 
+.starter-text {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  padding: 0 10px;
+}
+
+/* Individual message bubbles */
 .bubble {
-  margin: 8px;
-  padding: 8px;
-  font-size: 15px;
-  border: none;
-  color: #383838;
-  box-shadow: #975da533 0 8px 24px;
-  width: 80%;
-  text-align: left;
+  max-width: 80%;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(151, 93, 165, 0.2);
+  word-wrap: break-word;
 }
 
 .bubble.user {
-  background-color: #e1f4ffff;
+  align-self: flex-end;
+  background-color: #e1f4ff;
   border-radius: 20px 20px 0 24px;
-  margin-left: auto;
 }
 
 .bubble.assistant {
-  border-radius: 20px 20px 20px 0;
+  align-self: flex-start;
   background-color: #dce7ff;
+  border-radius: 20px 20px 20px 0;
 }
 
-.promptSuggestionRow {
-  width: 100%;
-}
-
-.prompt-suggestion-btn {
-  background-color: #f3f4f6;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
-  margin: 4px;
-  cursor: pointer;
-  box-shadow: #975da533 0 4px 12px;
-  font-size: 14px;
-}
+/* Loader styling */
 .loader {
   width: 60px;
   height: 20px;
-  margin: 10px 0 10px auto;
-  margin-right: auto;
-
+  margin: 10px auto;
   background: radial-gradient(circle closest-side, #383838 90%, transparent 0)
       0% 50% / 20px 20px no-repeat,
     radial-gradient(circle closest-side, #383838 90%, transparent 0) 50% 50% /
@@ -135,5 +98,80 @@ input[type="submit"] {
   }
   100% {
     background-size: 0 20px, 20px 20px, 20px 20px;
+  }
+}
+
+/* Prompt suggestions row */
+.promptSuggestionRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.prompt-suggestion-btn {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(151, 93, 165, 0.2);
+  font-size: 0.85rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.prompt-suggestion-btn:hover {
+  background-color: #2563eb;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Input form */
+form {
+  display: flex;
+  width: 100%;
+  padding: 10px 15px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #fafafa;
+}
+
+input.question-box {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+input.question-box:focus {
+  border-color: #2563eb;
+}
+
+input[type="submit"] {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="submit"]:hover {
+  background-color: #1e40af;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    height: 95vh;
+    width: 95%;
+  }
+  .bubble {
+    max-width: 90%;
   }
 }
