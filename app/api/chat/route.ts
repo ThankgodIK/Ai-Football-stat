@@ -41,13 +41,32 @@ export async function POST(req: Request) {
       docContent = "";
     }
 
+    //     const systemMessage = {
+    //       role: "system",
+    //       content: `You are a football statistics AI assistant.
+    // Use the following context to answer the question:
+    // ${docContent}
+    // If the context lacks info, answer based on your knowledge, or say you don't know.
+    // QUESTION: ${latestMessage}`,
+    //     };
+
     const systemMessage = {
       role: "system",
-      content: `You are a football statistics AI assistant.
-Use the following context to answer the question:
-${docContent}
-If the context lacks info, answer based on your knowledge, or say you don't know.
-QUESTION: ${latestMessage}`,
+      content: `You are a knowledgeable football statistics AI assistant.
+
+Context:
+${docContent || "No additional context available."}
+
+Instructions:
+- Use the context above to answer the user's question whenever possible.
+- If the context does not include the needed information, answer based on your own knowledge.
+- If you have no information about the question, respond honestly that you don't know.
+- Always provide clear, concise, and factual answers.
+- Never cite the context verbatim; instead, synthesize the information into a coherent response.
+- Never reveal the source of your information.
+
+User Question:
+${latestMessage}`,
     };
 
     // Use `any` to bypass strict type mismatch for v2.2.33

@@ -26,18 +26,13 @@ const googleGenAI = new GoogleGenAI({
 });
 
 const fileData = [
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
-  //   "https://en.wikipedia.org/wiki/Lionel_Messi",
-  //   "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
-  //   "https://en.wikipedia.org/wiki/Neymar",
-  //   "https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9",
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_final",
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_kick-off",
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_group_stage",
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_quarter-finals",
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_semi-finals",
-  //   "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_finals",
-  "https://en.wikipedia.org/wiki/Football",
+  // "https://en.wikipedia.org/wiki/Football",
+  "https://en.wikipedia.org/wiki/UEFA",
+  "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
+  "https://en.wikipedia.org/wiki/Neymar",
+  "https://en.wikipedia.org/wiki/2025_FIFA_Club_World_Cup",
+  "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup",
+  "https://en.wikipedia.org/wiki/Lionel_Messi",
 ];
 
 const client = new DataAPIClient(ASTRA_DB_APPLICATION_TOKEN);
@@ -95,5 +90,5 @@ const scrapePage = async (fileUrl: string) => {
   return (await loader.scrape())?.replace(/<[^>]*>?/gm, " ");
 };
 
-createCollection().then(() => loadSampleData());
-// loadSampleData();
+// createCollection().then(() => loadSampleData());
+loadSampleData();
